@@ -3,22 +3,26 @@
 This is the sandboxed development account for [Surxe](https://github.com/Surxe).
 
 It exists for one reason: to keep AI-assisted tooling behind a hard privilege
-boundary. On my Debian workstation, Claude Code runs as a separate, unprivileged
-PC user with its own GitHub identity (this one), so automation never has access
-to my primary account's credentials or my home directory.
+boundary. Across my boxes — my Debian workstation and a headless Proxmox home
+server — Claude Code runs as a separate, unprivileged PC user with its own GitHub
+identity (this one), so automation never has access to my primary account's
+credentials or my home directory.
 
 ## How the boundary works
 
 - **Separate PC user:** the automation user is its own Linux account with no sudo and no write access into my primary user's files.
 - **Separate GitHub account:** commits made by tooling are authored here, as Surxe-dev, and stay clearly distinct from my own work on [Surxe](https://github.com/Surxe).
-- **Copy, never symlink:** the `install.sh` in [my-system](https://github.com/Surxe/my-system) deploys shared config by *copying* it into each user's home. Nothing this account touches can write back across the boundary into my primary user's files.
+- **Copy, never symlink:** on the workstation, the `install.sh` in [my-system](https://github.com/Surxe/my-system) deploys config — including the shared [dev-env](https://github.com/Surxe/dev-env) layer — by *copying* it into each user's home rather than symlinking. Nothing this account touches can write back across the boundary into my primary user's files. (The home server has no second human user, so there the GitHub-identity boundary above is the whole story.)
 
 ## What runs here
 
 Development work on the same projects Surxe maintains (datamined game databases,
-wikis, and personal Linux tooling), just committed from the sandboxed side of the
-line. If you're looking for the projects themselves, the person behind them, and
-how to get in touch, start at [Surxe](https://github.com/Surxe).
+wikis, and personal Linux tooling), plus the automation on my
+[home-server](https://github.com/Surxe/home-server) — all committed from the
+sandboxed side of the line. The portable dev config shared across both boxes lives
+in [dev-env](https://github.com/Surxe/dev-env). If you're looking for the projects
+themselves, the person behind them, and how to get in touch, start at
+[Surxe](https://github.com/Surxe).
 
 ## Reach me
 
